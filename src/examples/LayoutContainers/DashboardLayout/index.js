@@ -39,12 +39,17 @@ function DashboardLayout({ children }) {
   return (
     <SoftBox
       sx={({ breakpoints, transitions, functions: { pxToRem } }) => ({
-        p: 3,
-        position: "relative",
+        position: "fixed",
+        top: "38px", // Reduced from 64px to match navbar
+        left: pxToRem(96), // After mini sidebar (default)
+        right: 0,
+        bottom: 0,
+        overflowY: "auto",
+        overflowX: "hidden",
 
         [breakpoints.up("xl")]: {
-          marginLeft: miniSidenav ? pxToRem(120) : pxToRem(274),
-          transition: transitions.create(["margin-left", "margin-right"], {
+          left: miniSidenav ? pxToRem(96) : pxToRem(250), // After Sidenav
+          transition: transitions.create(["left"], {
             easing: transitions.easing.easeInOut,
             duration: transitions.duration.standard,
           }),

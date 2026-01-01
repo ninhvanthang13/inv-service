@@ -36,11 +36,11 @@ function Tables() {
 
   return (
     <DashboardLayout>
-      <DashboardNavbar />
-      <SoftBox py={3}>
-        <SoftBox mb={3}>
+      {/* <DashboardNavbar /> */}
+      <SoftBox py={2}>
+        <SoftBox mb={2}>
           <Card>
-            <SoftBox display="flex" justifyContent="space-between" alignItems="center" p={3}>
+            <SoftBox display="flex" justifyContent="space-between" alignItems="center" p={2}>
               <SoftTypography variant="h6">Authors table</SoftTypography>
             </SoftBox>
             <SoftBox
@@ -58,7 +58,7 @@ function Tables() {
           </Card>
         </SoftBox>
         <Card>
-          <SoftBox display="flex" justifyContent="space-between" alignItems="center" p={3}>
+          <SoftBox display="flex" justifyContent="space-between" alignItems="center" p={2}>
             <SoftTypography variant="h6">Projects table</SoftTypography>
           </SoftBox>
           <SoftBox
@@ -75,7 +75,7 @@ function Tables() {
           </SoftBox>
         </Card>
       </SoftBox>
-      <Footer />
+      {/* <Footer /> */}
     </DashboardLayout>
   );
 }

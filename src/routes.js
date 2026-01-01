@@ -37,11 +37,11 @@ Coded by www.creative-tim.com
 
 // Soft UI Dashboard React layouts
 import Dashboard from "layouts/dashboard";
-import Tables from "layouts/tables";
-import Billing from "layouts/billing";
-import VirtualReality from "layouts/virtual-reality";
-import RTL from "layouts/rtl";
-import Profile from "layouts/profile";
+import Billing from "./layouts/billing";
+import MasterData from "./layouts/master-data";
+import RTL from "./layouts/rtl";
+import PortTest from "./layouts/PortTest";
+import Profile from "./layouts/profile";
 import SignIn from "layouts/authentication/sign-in";
 import SignUp from "layouts/authentication/sign-up";
 
@@ -65,15 +65,7 @@ const routes = [
     component: <Dashboard />,
     noCollapse: true,
   },
-  {
-    type: "collapse",
-    name: "Tables",
-    key: "tables",
-    route: "/tables",
-    icon: <Office size="12px" />,
-    component: <Tables />,
-    noCollapse: true,
-  },
+
   {
     type: "collapse",
     name: "Billing",
@@ -85,11 +77,20 @@ const routes = [
   },
   {
     type: "collapse",
-    name: "Virtual Reality",
-    key: "virtual-reality",
-    route: "/virtual-reality",
+    name: "Port Test",
+    key: "port-test",
+    route: "/port-test",
+    icon: <CreditCard size="12px" />,
+    component: <PortTest />,
+    noCollapse: true,
+  },
+  {
+    type: "collapse",
+    name: "Master Data",
+    key: "master-data",
+    route: "/master-data",
     icon: <Cube size="12px" />,
-    component: <VirtualReality />,
+    component: <MasterData />,
     noCollapse: true,
   },
   {

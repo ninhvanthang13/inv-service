@@ -61,7 +61,7 @@ export default styled(Drawer)(({ theme, ownerState }) => {
       boxShadow: transparentSidenav ? "none" : xxl,
       marginBottom: transparentSidenav ? 0 : "inherit",
       left: "0",
-      width: pxToRem(96),
+      width: pxToRem(76),
       overflowX: "hidden",
       transform: "translateX(0)",
       transition: transitions.create(["width", "background-color"], {
@@ -75,6 +75,8 @@ export default styled(Drawer)(({ theme, ownerState }) => {
     "& .MuiDrawer-paper": {
       boxShadow: xxl,
       border: "none",
+      top: "60px", // Offset for NavbarStandard
+      height: "calc(100vh - 60px)", // Adjust height to fit below navbar
 
       ...(miniSidenav ? drawerCloseStyles() : drawerOpenStyles()),
     },

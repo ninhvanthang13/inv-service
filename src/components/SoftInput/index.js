@@ -19,10 +19,10 @@ import { forwardRef } from "react";
 import PropTypes from "prop-types";
 
 // Custom styles for SoftInput
-import SoftInputRoot from "components/SoftInput/SoftInputRoot";
-import SoftInputWithIconRoot from "components/SoftInput/SoftInputWithIconRoot";
 import SoftInputIconBoxRoot from "components/SoftInput/SoftInputIconBoxRoot";
 import SoftInputIconRoot from "components/SoftInput/SoftInputIconRoot";
+import SoftInputRoot from "components/SoftInput/SoftInputRoot";
+import SoftInputWithIconRoot from "components/SoftInput/SoftInputWithIconRoot";
 
 // Soft UI Dashboard React contexts
 import { useSoftUIController } from "context";
@@ -31,14 +31,16 @@ const SoftInput = forwardRef(({ size, icon, error, success, disabled, ...rest },
   let template;
   const [controller] = useSoftUIController();
   const { direction } = controller;
-  const iconDirection = icon.direction;
+  // Ensure icon has default value if undefined
+  const iconWithDefault = icon || { component: false, direction: "none" };
+  const iconDirection = iconWithDefault.direction;
 
-  if (icon.component && icon.direction === "left") {
+  if (iconWithDefault.component && iconWithDefault.direction === "left") {
     template = (
       <SoftInputWithIconRoot ref={ref} ownerState={{ error, success, disabled }}>
         <SoftInputIconBoxRoot ownerState={{ size }}>
           <SoftInputIconRoot fontSize="small" ownerState={{ size }}>
-            {icon.component}
+            {iconWithDefault.component}
           </SoftInputIconRoot>
         </SoftInputIconBoxRoot>
         <SoftInputRoot
@@ -47,7 +49,7 @@ const SoftInput = forwardRef(({ size, icon, error, success, disabled, ...rest },
         />
       </SoftInputWithIconRoot>
     );
-  } else if (icon.component && icon.direction === "right") {
+  } else if (iconWithDefault.component && iconWithDefault.direction === "right") {
     template = (
       <SoftInputWithIconRoot ref={ref} ownerState={{ error, success, disabled }}>
         <SoftInputRoot
@@ -56,7 +58,7 @@ const SoftInput = forwardRef(({ size, icon, error, success, disabled, ...rest },
         />
         <SoftInputIconBoxRoot ownerState={{ size }}>
           <SoftInputIconRoot fontSize="small" ownerState={{ size }}>
-            {icon.component}
+            {iconWithDefault.component}
           </SoftInputIconRoot>
         </SoftInputIconBoxRoot>
       </SoftInputWithIconRoot>

@@ -41,12 +41,15 @@ import {
   baseLayout,
   baseLayoutBackground,
   baseLayoutContent,
-} from "layouts/virtual-reality/components/BaseLayout/styles";
+} from "layouts/master-data/components/BaseLayout/styles";
 
 // Images
 import brand from "assets/images/logo-ct.png";
+import SoftButton from "components/SoftButton";
+import PageHeader from "../PageHeader";
+import { Height } from "@mui/icons-material";
 
-function BaseLayout({ children }) {
+function BaseLayout({ children, headerInfo, breadcrumbs, actionButtons }) {
   const [controller, dispatch] = useSoftUIController();
   const { miniSidenav, sidenavColor } = controller;
   const [onMouseEnter, setOnMouseEnter] = useState(false);
@@ -76,35 +79,35 @@ function BaseLayout({ children }) {
 
   return (
     <SoftBox sx={baseLayout}>
-      <SoftBox mt={3} mx={3}>
-        <DashboardNavbar />
+      <SoftBox
+        sx={{
+          position: "sticky",
+          top: 0,
+          zIndex: 10,
+          backgroundColor: "transparent",
+        }}
+      >
+        {/* <SoftBox ml={1} mr={1}>
+          <DashboardNavbar onMouseEnter={handleOnMouseEnter} onMouseLeave={handleOnMouseLeave} />
+        </SoftBox> */}
+        <PageHeader
+          title={headerInfo.title}
+          subtitle={headerInfo.subtitle}
+          icon={headerInfo.icon}
+          actionButtons={actionButtons}
+          breadcrumbs={breadcrumbs}
+        />
       </SoftBox>
-      <SoftBox sx={baseLayoutBackground}>
-        <SoftBox display={{ xs: "block", lg: "none" }}>
-          <Sidenav
-            brand={brand}
-            brandName="Soft UI Dashboard PRO"
-            routes={routes}
-            onMouseEnter={handleOnMouseEnter}
-            onMouseLeave={handleOnMouseLeave}
-          />
-        </SoftBox>
-        <SoftBox sx={baseLayoutContent}>
-          <SoftBox display={{ xs: "none", lg: "block" }}>
-            <Sidenav
-              color={sidenavColor}
-              brand={brand}
-              brandName="Soft UI Dashboard PRO"
-              routes={routes}
-              onMouseEnter={handleOnMouseEnter}
-              onMouseLeave={handleOnMouseLeave}
-            />
-          </SoftBox>
-          <DashboardLayout>{children}</DashboardLayout>
-        </SoftBox>
-      </SoftBox>
-      <SoftBox pb={2} pt={0.25}>
-        <Footer />
+
+      <SoftBox
+        sx={{
+          flex: 1,
+          overflow: "hidden",
+          padding: "0.5rem",
+          backgroundColor: "#179f1aff",
+        }}
+      >
+        {children}
       </SoftBox>
     </SoftBox>
   );

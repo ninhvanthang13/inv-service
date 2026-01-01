@@ -23,6 +23,10 @@ function baseLayout({ functions, breakpoints }) {
     width: "100vw",
     height: "100vh",
     overflow: "hidden",
+    display: "flex",
+    flexDirection: "column",
+    backgroundColor: "#884d4dff",
+    margin: "1rem",
 
     [breakpoints.down("lg")]: {
       "& .MuiDrawer-paper.makeStyles-sidenav_close-9": {
@@ -52,14 +56,14 @@ function baseLayout({ functions, breakpoints }) {
 
 const baseLayoutBackground = ({ borders: { borderRadius }, breakpoints }) => ({
   width: "calc(100% - 2rem)",
-  height: "calc(100% - 11rem)",
+  height: "calc(100% - 2rem)",
   backgroundImage: `url(${vrBg})`,
   backgroundSize: "cover",
   borderRadius: borderRadius.xl,
   position: "relative",
-  overflow: "auto",
-  my: 2,
-  mx: 2,
+  overflow: "hidden",
+  my: 1,
+  mx: 1,
 
   [breakpoints.down("sm")]: {
     overflow: "hidden",
@@ -67,16 +71,67 @@ const baseLayoutBackground = ({ borders: { borderRadius }, breakpoints }) => ({
 });
 
 const baseLayoutContent = ({ breakpoints }) => ({
-  width: "100%",
-  position: "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%) scale(0.6)",
+  position: "relative",
+  height: "calc(100vh - 2rem)",
+  overflow: "hidden",
+  color: "black",
+  borderRadius: "1rem",
 
   [breakpoints.down("sm")]: {
     position: "static",
-    transform: "translate(0) scale(1)",
+    transform: "none",
+    width: "100%",
+    height: "auto",
+    borderRadius: "1rem",
   },
 });
 
-export { baseLayout, baseLayoutBackground, baseLayoutContent };
+const classNamesObject = {
+  root: "demo-space-root",
+  item: "demo-space-item",
+  separator: "demo-space-separator",
+};
+const classNamesFn = (info) => {
+  if (info.props.orientation === "vertical") {
+    return {
+      root: "demo-space-root--vertical",
+    };
+  } else {
+    return {
+      root: "demo-space-root--horizontal",
+    };
+  }
+};
+const stylesObject = {
+  root: { borderWidth: 2, borderStyle: "dashed", padding: 8, marginBottom: 1 },
+  item: { backgroundColor: "#f0f0f0", padding: 4 },
+  separator: { color: "red", fontWeight: "normal" },
+};
+const stylesFn = (info) => {
+  if (info.props.size === "large") {
+    return {
+      root: {
+        backgroundColor: "#e6f7ff",
+        borderColor: "#1890ff",
+        padding: 8,
+      },
+    };
+  } else {
+    return {
+      root: {
+        backgroundColor: "#fff7e6",
+        borderColor: "#fa8c16",
+      },
+    };
+  }
+};
+
+export {
+  baseLayout,
+  baseLayoutBackground,
+  baseLayoutContent,
+  classNamesObject,
+  classNamesFn,
+  stylesObject,
+  stylesFn,
+};

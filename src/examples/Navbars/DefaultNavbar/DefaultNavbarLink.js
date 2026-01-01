@@ -37,14 +37,14 @@ function DefaultNavbarLink({ icon, name, route, light }) {
       alignItems="center"
       sx={{ cursor: "pointer", userSelect: "none" }}
     >
-      <Icon
+      {/* <Icon
         sx={{
           color: ({ palette: { white, secondary } }) => (light ? white.main : secondary.main),
           verticalAlign: "middle",
         }}
       >
         {icon}
-      </Icon>
+      </Icon> */}
       <SoftTypography
         variant="button"
         fontWeight="regular"
